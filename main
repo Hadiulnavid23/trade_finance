@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade Finance Presentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- Base and Infographic Styles --- */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background for presentation view */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+        }
+        .bar-chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+        }
+        .brand-text { color: #003f5c; }
+        .accent-text { color: #4d6a8a; }
+        .brand-bg { background-color: #003f5c; }
+        .accent-bg { background-color: #4d6a8a; }
+        .light-accent-bg { background-color: #8db0c7; }
+        .subtle-bg { background-color: #c4e7ff; }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            line-height: 1;
+            color: #8db0c7;
+        }
+
+        /* --- Slideshow Specific Styles --- */
+        .slide {
+            display: none; /* Hidden by default */
+            min-height: 500px; /* Consistent slide height */
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        .slide.active {
+            display: flex; /* Show active slide */
+        }
+        .slide-container {
+            width: 100%;
+            max-w-5xl; /* Wider container for infographic elements */
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+        }
+        .nav-button {
+            background-color: #003f5c;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .nav-button:hover:not(:disabled) {
+            background-color: #005f8c;
+            transform: scale(1.05);
+        }
+        .nav-button:disabled {
+            background-color: #9eadb6;
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div class="slide-container">
+        <div id="slides-wrapper" class="p-8 sm:p-10">
+
+            <!-- Slide 1: Title -->
+            <div class="slide active">
+                <div class="brand-bg text-white text-center py-16 px-4 rounded-lg w-full">
+                    <h1 class="text-4xl md:text-6xl font-black uppercase tracking-wider">Capitalizing on UAE Trade Flows</h1>
+                    <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-gray-200">A strategic framework for banks to unlock value.</p>
+                </div>
+            </div>
+
+            <!-- Slide 2: Market Overview (Donut Chart) -->
+            <div class="slide">
+                <section id="market-overview" class="w-full">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center brand-text mb-4">A Multi-Faceted Trade Ecosystem</h2>
+                    <p class="text-center max-w-2xl mx-auto accent-text mb-8">The UAE's trade finance landscape is composed of diverse sectors, each presenting unique opportunities.</p>
+                    <div class="card p-6 md:p-8">
+                         <h3 class="text-xl font-bold text-center brand-text mb-4">Distribution of Trade Finance Opportunities</h3>
+                        <div class="chart-container">
+                            <canvas id="sectorsDonutChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Slide 3: Sector Deep Dive -->
+            <div class="slide">
+                 <section id="sector-deep-dive" class="w-full">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center brand-text mb-8">Sector Deep Dive: Opportunities & Risks</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6 text-left">
+                        <div class="card p-4 flex flex-col"><div class="text-4xl mb-2">⛽</div><h3 class="text-lg font-bold brand-text">Commodities</h3><p class="accent-text text-sm"><strong class="text-green-600">Opp:</strong> Structured finance. <br/><strong class="text-red-600">Risk:</strong> Offshore buyer credit.</p></div>
+                        <div class="card p-4 flex flex-col"><div class="text-4xl mb-2">🛍️</div><h3 class="text-lg font-bold brand-text">Consumer Goods</h3><p class="accent-text text-sm"><strong class="text-green-600">Opp:</strong> Distributor finance. <br/><strong class="text-red-600">Risk:</strong> Emerging market buyers.</p></div>
+                        <div class="card p-4 flex flex-col"><div class="text-4xl mb-2">🏗️</div><h3 class="text-lg font-bold brand-text">Capital Goods</h3><p class="accent-text text-sm"><strong class="text-green-600">Opp:</strong> Supply chain finance. <br/><strong class="text-red-600">Risk:</strong> Gov-linked buyers.</p></div>
+                        <div class="card p-4 flex flex-col"><div class="text-4xl mb-2">🌾</div><h3 class="text-lg font-bold brand-text">Agri & Food</h3><p class="accent-text text-sm"><strong class="text-green-600">Opp:</strong> Islamic finance. <br/><strong class="text-red-600">Risk:</strong> SME exporters.</p></div>
+                        <div class="card p-4 flex flex-col"><div class="text-4xl mb-2">💎</div><h3 class="text-lg font-bold brand-text">Precious Metals</h3><p class="accent-text text-sm"><strong class="text-green-600">Opp:</strong> Repo/bullion finance. <br/><strong class="text-red-600">Risk:</strong> High fraud/AML.</p></div>
+                        <div class="card p-4 flex flex-col"><div class="text-4xl mb-2">🚢</div><h3 class="text-lg font-bold brand-text">Logistics</h3><p class="accent-text text-sm"><strong class="text-green-600">Opp:</strong> Working capital. <br/><strong class="text-red-600">Risk:</strong> Destination counterparties.</p></div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Slide 4: Core Strategy -->
+            <div class="slide">
+                <section id="core-strategy" class="w-full">
+                    <h2 class="text-3xl md:text-4xl font-bold brand-text mb-4">The Core Strategy: Anchor-Led Structuring</h2>
+                    <p class="max-w-3xl mx-auto accent-text mb-8">Shift the focus of financing from the unpredictable offshore buyer to the stronger, stable UAE-based entity.</p>
+                    <div class="card p-6 md:p-8">
+                        <div class="flex flex-col md:flex-row items-center justify-around gap-4">
+                            <div class="text-center p-4 border-2 border-red-300 rounded-lg bg-red-50 w-full md:w-1/3">
+                                <h4 class="font-bold text-red-700">Traditional Model (High Risk)</h4>
+                                <p class="text-sm">Bank directly finances the high-risk offshore buyer.</p>
+                            </div>
+                            <div class="flow-arrow transform rotate-90 md:rotate-0">➔</div>
+                             <div class="text-center p-4 border-2 border-green-300 rounded-lg bg-green-50 w-full md:w-1/3">
+                                <h4 class="font-bold text-green-700">Anchor-Led Model (Low Risk)</h4>
+                                <p class="text-sm">Bank finances the trusted UAE Exporter/Distributor.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Slide 5: Risk Landscape (Bar Chart) -->
+            <div class="slide">
+                <section id="risk-framework" class="w-full">
+                     <h2 class="text-3xl md:text-4xl font-bold text-center brand-text mb-4">Visualizing the Risk Landscape</h2>
+                    <p class="text-center max-w-2xl mx-auto accent-text mb-8">This framework visualizes the relative risk levels, reinforcing the importance of choosing the right anchor.</p>
+                    <div class="card p-6 md:p-8">
+                        <h3 class="text-xl font-bold text-center brand-text mb-4">Relative Risk by Counterparty Type</h3>
+                        <div class="bar-chart-container">
+                            <canvas id="riskBarChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Slide 6: How to Win -->
+            <div class="slide">
+                 <section id="differentiation" class="w-full">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center brand-text mb-8">How UAE Banks Can Differentiate and Win</h2>
+                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+                         <div class="subtle-bg p-6 rounded-lg"><h3 class="font-bold text-lg brand-text mb-2">🤝 Strategic Partnerships</h3><p class="accent-text text-sm">Collaborate with ECAs, DFIs, and local banks to de-risk transactions and expand reach.</p></div>
+                         <div class="subtle-bg p-6 rounded-lg"><h3 class="font-bold text-lg brand-text mb-2">💻 Invest in Technology</h3><p class="accent-text text-sm">Adopt platforms like Contour or Komgo to digitize workflows and reduce fraud.</p></div>
+                         <div class="subtle-bg p-6 rounded-lg"><h3 class="font-bold text-lg brand-text mb-2">🌙 Sharia-Compliant Offerings</h3><p class="accent-text text-sm">Build deep expertise in Islamic trade finance to dominate key corridors.</p></div>
+                         <div class="subtle-bg p-6 rounded-lg"><h3 class="font-bold text-lg brand-text mb-2">⚓ Anchor-Led Structuring</h3><p class="accent-text text-sm">Make financing the strong UAE-based entity the core principle.</p></div>
+                         <div class="subtle-bg p-6 rounded-lg"><h3 class="font-bold text-lg brand-text mb-2">🌐 Specialised Desks</h3><p class="accent-text text-sm">Create dedicated teams for key trade corridors (India-UAE, Africa-UAE).</p></div>
+                     </div>
+                </section>
+            </div>
+            
+            <!-- Slide 7: Conclusion -->
+            <div class="slide">
+                <div class="accent-bg text-white text-center p-12 mt-12 rounded-lg">
+                    <p class="text-2xl font-bold">A strategic, data-driven approach to trade finance will unlock significant growth for banks in the UAE.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <div class="flex items-center justify-between w-full max-w-5xl mt-6">
+        <button id="prevBtn" class="nav-button">Previous</button>
+        <div id="slideCounter" class="text-center font-semibold accent-text">1 / 7</div>
+        <button id="nextBtn" class="nav-button">Next</button>
+    </div>
+
+    <script>
+        // --- SLIDESHOW NAVIGATION LOGIC ---
+        const slides = document.querySelectorAll('.slide');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const slideCounter = document.getElementById('slideCounter');
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+
+        function showSlide(slideIndex) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[slideIndex].classList.add('active');
+            slideCounter.textContent = `${slideIndex + 1} / ${totalSlides}`;
+            prevBtn.disabled = slideIndex === 0;
+            nextBtn.disabled = slideIndex === totalSlides - 1;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextBtn.click();
+            else if (e.key === 'ArrowLeft') prevBtn.click();
+        });
+
+        showSlide(currentSlide);
+
+        // --- CHART.JS INITIALIZATION LOGIC ---
+        // This code is taken directly from the infographic HTML
+        const wrapLabel = (label, maxLength = 16) => {
+            if (label.length <= maxLength) return label;
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) lines.push(currentLine);
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        const chartColors = {
+            blue: '#003f5c', accent1: '#4d6a8a', accent2: '#8db0c7',
+            accent3: '#c4e7ff', gray: '#f1f1f1', red: '#e53e3e',
+            green: '#38a169', yellow: '#d69e2e', orange: '#dd6b20'
+        };
+
+        // Donut Chart
+        const donutChartData = {
+            labels: [wrapLabel('Commodities'), wrapLabel('Consumer Goods'), wrapLabel('Infrastructure'), wrapLabel('Agri & Food'), wrapLabel('Gold & Metals'), wrapLabel('Logistics')],
+            datasets: [{
+                data: [25, 20, 18, 15, 12, 10], 
+                backgroundColor: [chartColors.blue, chartColors.accent1, chartColors.accent2, chartColors.green, chartColors.yellow, chartColors.orange],
+                borderColor: 'white', borderWidth: 4, hoverOffset: 4
+            }]
+        };
+
+        new Chart(document.getElementById('sectorsDonutChart'), {
+            type: 'doughnut', data: donutChartData,
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { color: chartColors.accent1, padding: 15, font: { size: 12 }}},
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                },
+                cutout: '60%'
+            }
+        });
+
+        // Bar Chart
+        const riskBarChartData = {
+            labels: [wrapLabel('Emerging Market Buyer'), wrapLabel('Asian Buyer'), wrapLabel('UAE Exporter'), wrapLabel('Multinational Corp')].reverse(),
+            datasets: [{
+                label: 'Relative Risk Level', data: [4, 3, 2, 1].reverse(), 
+                backgroundColor: [chartColors.green, chartColors.accent2, chartColors.yellow, chartColors.red].reverse(),
+                borderColor: chartColors.blue, borderWidth: 1, borderRadius: 5
+            }]
+        };
+
+        new Chart(document.getElementById('riskBarChart'), {
+            type: 'bar', data: riskBarChartData,
+            options: {
+                indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+                scales: {
+                    x: { beginAtZero: true, ticks: { display: false }, grid: { display: false, drawBorder: false }},
+                    y: { ticks: { color: chartColors.accent1, font: { size: 12 }}, grid: { display: false, drawBorder: false }}
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
